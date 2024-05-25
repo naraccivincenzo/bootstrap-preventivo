@@ -33,21 +33,21 @@
             <div class="col-12 col-md-8">
                 <h1>Richiesta Preventivo</h1>
                 <p>Compila il form per richiedere un preventivo per i nostri servizi di sviluppo.</p>
-                <form id="form">
+                <form id="form"> <!-- form start -->
                     <div class="mb-3">
                         <label for="firstname" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="firstname" placeholder="Mario">
+                        <input type="text" class="form-control" id="firstname" placeholder="Mario" required>
                     </div>
                     <div class="mb-3">
                         <label for="lastname" class="form-label">Cognome</label>
-                        <input type="text" class="form-control" id="lastname" placeholder="Rossi">
+                        <input type="text" class="form-control" id="lastname" placeholder="Rossi" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="mario.rossi@bool.it">
+                        <input type="email" class="form-control" id="email" placeholder="mario.rossi@bool.it" required>
                     </div>
                     <label for="worktype" class="form-label">Tipo di lavoro</label>
-                    <select class="form-select mb-3" aria-label="Default select example" id="worktype">
+                    <select class="form-select mb-3" aria-label="Default select example" id="worktype" required>
                         <option selected>Seleziona il tipo di lavoro</option>
                         <option value="1">Backed Development</option>
                         <option value="2">Frontend Development</option>
@@ -55,34 +55,33 @@
                     </select>
                     <div class="mb-3">
                         <label for="specialrequest" class="form-label">Richieste particolari</label>
-                        <textarea class="form-control" id="specialrequest" rows="3"></textarea>
+                        <textarea class="form-control" id="specialrequest" rows="3" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="discountcode" class="form-label">Codice Promozionale (opzionale)</label>
                         <textarea class="form-control" id="discountcode" rows="1"></textarea>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="privacy">
+                        <input class="form-check-input" type="checkbox" value="" id="privacy" required>
                         <label class="form-check-label" for="privacy">
                             Accetto la privacy policy
                         </label>
                     </div>
-
                     <div class="row justify-content-center my-5 text-center">
-                        <div class="col-7 col-md-4 mb-3">
+                        <div class="col-7 col-md-4 mb-3"> <!-- button -->
                             <button type="submit" class="btn btn-primary">Calcola preventivo</button>
                         </div>
-                        <div class="col-7 col-md-4 px-5">
+                        <div class="col-7 col-md-4 px-5 d-none" id="total"> <!-- total -->
                             <p class="mb-0 fw-bold">Prezzo finale</p>
                             <span class="fw-bold">€</span>
                             <span class="fw-bold pe-0" id="price">200</span>
                             <span class="text-body-tertiary ps-0" id="cent">,00</span>
                         </div>
-                        <p id="error"></p>
+                        <p id="error"></p> <!-- error message -->
                     </div>
-                </form>
+                </form> <!-- form end -->
             </div>
-            <div class="card col-12 col-md-4 h-100 px-0">
+            <div class="card col-12 col-md-4 h-100 px-0"> <!-- contacts card -->
                 <img src="https://placehold.co/300x200" class="card-img-top" alt="immagine dei contatti">
                 <div class="card-text">
                     <h5 class="card-title px-3">I Nostri Contatti</h5>
@@ -100,7 +99,6 @@
     <footer class="bg-black text-white text-center py-2 mt-5">
         <p>&#9400; 2024 - Tutti i diritti riservati</p>
     </footer>
-
 
     <!-- my js start -->
     <script src="js/main.js"></script>

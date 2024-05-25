@@ -1,35 +1,42 @@
 'use strict'
 
-// Variables
-const backend = 20.50;
-const frontend = 15.30;
-const analysis = 33.60;
+// Init constants
+const rates = {
+    backend: 20.50,
+    frontend: 15.30,
+    analysis: 33.60,
+};
 const hours = 10;
-const discount = 25;
+const discountPercentage = 25;
 let total = 0;
-let decimal = 0;
+
+// Retrieve elements from DOM
 const form = document.getElementById("form");
 const worktype = document.getElementById("worktype");
 const discountcode = document.getElementById("discountcode");
 const price = document.getElementById("price");
 const cent = document.getElementById("cent");
 const error = document.getElementById("error");
+const totalElement = document.getElementById("total");
 
-
-function calculateTotal(string) {
-    if (string === '1') {
-        total = hours * backend;
-    } else if (string === '2') {
-        total = hours * frontend;
-    } else if (string === '3') {
-        total = hours * analysis;
+// Switch case to calculate total
+const calculateTotal = (type) => {
+    switch (type) {
+        case '1':
+            return hours * rates.backend;
+        case '2':
+            return hours * rates.frontend;
+        case '3':
+            return hours * rates.analysis;
+        default:
+            return 0;
     }
-    return total;
-}
+};
 
+// funcion to apply discount
 function applyDiscount(code) {
     if (code === 'YHDNU32' || code === 'JANJC63' || code === 'PWKCN25' || code === 'SJDPO96' || code === 'POCIE24') {
-        total = total - (total * discount) / 100;
+        total = total - (total * discountPercentage) / 100;
         return total;
     } else {
         error.innerText = "Il codice promozionale non è valido o non esiste ed è stato calcolato il prezzo normale";
@@ -37,16 +44,19 @@ function applyDiscount(code) {
     }
 }
 
-//form submit listener
+/* Form submit listener 
+in this part the function calculateTotal and applyDiscount are called
+in order to calculate the total and apply the discount
+and then the price and cent elements are updated and the total element is shown
+*/
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     total = calculateTotal(worktype.value);
     total = applyDiscount(discountcode.value);
-    const totalString = total.toFixed(2).toString();
+    const totalString = total.toFixed(2);
     const separator = totalString.indexOf('.');
-    decimal = totalString.slice(separator, 6);
+    let decimal = totalString.slice(separator, 6);
     price.innerText = Math.floor(total);
     cent.innerText = decimal;
-    console.log(discountcode.value);
+    totalElement.classList.remove('d-none');
 })
-
